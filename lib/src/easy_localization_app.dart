@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -324,7 +325,8 @@ class _EasyLocalizationDelegate extends LocalizationsDelegate<Localization> {
   Future<Localization> load(Locale value) {
     log('Load Localization Delegate', name: 'Easy Localization');
     Localization.load(value, translations: translations);
-    return Future.value(Localization.instance);
+    return SynchronousFuture(Localization.instance);
+    //return Future.value(Localization.instance);
   }
 
   @override
